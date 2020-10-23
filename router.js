@@ -15,7 +15,6 @@ var app = express();
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 app.use(cors());
-//Initialize the web3 provider using localhost RPC and an Infura RPC Fallback
 
 
 const provider = require('./libs/provider');
@@ -24,7 +23,7 @@ var web3 = new Web3(new Web3.providers.HttpProvider(provider));
 
 var contractAbi = require('./libs/electionAbi');
 const contractAddress = require('./libs/electionContract');
-const contractTOGet = new  web3.eth.Contract(contractAddress,contractAbi);
+const contractTOGet = new  web3.eth.Contract(contractAbi,contractAddress);
 
 
 function getCurrentLead() {
@@ -39,11 +38,8 @@ function getCurrentLead() {
   app.get('/Voting/CurrentLead', async (req, res) => {
     try
     {
-      const CurrentLead = await getCurrentLead();
-      res.send({
-        error: 0,
-        lead: CurrentLead
-      });
+      var CurrentLead = await getCurrentLead();
+      res.send(output);
     } catch(err) {
       console.log('err' + err.message);
       res.status(500).send({
@@ -59,6 +55,11 @@ function getCurrentLead() {
 
 
 
+
+
+
+
+
   function getFinalResult() {
     return new Promise((resolve, reject) => {
         contractTOGet.methods.FinalResult().call().then(function (end) {
@@ -68,10 +69,10 @@ function getCurrentLead() {
   }
   
   
-  app.get('/Voting/CurrentLead', async (req, res) => {
+  app.get('/Voting/FinalResult', async (req, res) => {
     try
     {
-      const result = await getFinalResult();
+      var result = await getFinalResult();
       res.send({
         error: 0,
         won: result
@@ -113,7 +114,7 @@ function getCurrentLead() {
   app.get('/Voting/BidenVotes', async (req, res) => {
     try
     {
-      const bVotes = await getBidenVotes();
+      var bVotes = await getBidenVotes();
       res.send({
         error: 0,
         bidenvotes: bVotes
@@ -135,7 +136,7 @@ function getCurrentLead() {
   app.get('/Voting/TrumpVotes', async (req, res) => {
     try
     {
-      const tVotes = await getTrumpVotes();
+      var tVotes = await getTrumpVotes();
       res.send({
         error: 0,
         trumpvotes: tVotes
@@ -174,7 +175,7 @@ function getCurrentLead() {
   app.get('/Voting/BidenVoters', async (req, res) => {
     try
     {
-      const bVoters = await getBidenVoters();
+      var bVoters = await getBidenVoters();
       res.send({
         error: 0,
         bidenvoters: bVoters
@@ -196,7 +197,7 @@ function getCurrentLead() {
   app.get('/Voting/TrumpVoters', async (req, res) => {
     try
     {
-      const tVoters = await getTrumpVoters();
+      var tVoters = await getTrumpVoters();
       res.send({
         error: 0,
         Trumpvoters: tVoters
@@ -217,8 +218,8 @@ function getCurrentLead() {
   
 
 
-app.listen(7878, function(err){
+app.listen(8008, function(err){
     if (!err) {
-      console.log("Server is Running on port 7878");
+      console.log("Server is Running on port 8008");
     }
   });
