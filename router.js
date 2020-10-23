@@ -156,7 +156,7 @@ function getCurrentLead() {
 
   function getBidenVoters() {
     return new Promise((resolve, reject) => {
-        contractTOGet.methods.tVoters().call().then(function (end) {
+        contractTOGet.methods.fVoters().call().then(function (end) {
         return resolve(end);
       })
     })
