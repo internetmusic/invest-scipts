@@ -35,7 +35,7 @@ function getCurrentLead() {
   }
   
   
-  app.get('/Voting/CurrentLead', async (req, res) => {
+  app.get('/CurrentLead', async (req, res) => {
     try
     {
       var CurrentLead = await getCurrentLead();
@@ -69,7 +69,7 @@ function getCurrentLead() {
   }
   
   
-  app.get('/Voting/FinalResult', async (req, res) => {
+  app.get('/FinalResult', async (req, res) => {
     try
     {
       var result = await getFinalResult();
@@ -111,7 +111,7 @@ function getCurrentLead() {
   }
   
   
-  app.get('/Voting/BidenVotes', async (req, res) => {
+  app.get('/BidenVotes', async (req, res) => {
     try
     {
       var bVotes = await getBidenVotes();
@@ -133,7 +133,7 @@ function getCurrentLead() {
   });
 
 
-  app.get('/Voting/TrumpVotes', async (req, res) => {
+  app.get('/TrumpVotes', async (req, res) => {
     try
     {
       var tVotes = await getTrumpVotes();
@@ -172,7 +172,7 @@ function getCurrentLead() {
   }
   
   
-  app.get('/Voting/BidenVoters', async (req, res) => {
+  app.get('/BidenVoters', async (req, res) => {
     try
     {
       var bVoters = await getBidenVoters();
@@ -194,7 +194,7 @@ function getCurrentLead() {
   });
 
   
-  app.get('/Voting/TrumpVoters', async (req, res) => {
+  app.get('/TrumpVoters', async (req, res) => {
     try
     {
       var tVoters = await getTrumpVoters();
