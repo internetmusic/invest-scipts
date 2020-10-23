@@ -28,7 +28,7 @@ const contractTOGet = new  web3.eth.Contract(contractAbi,contractAddress);
 
 function getCurrentLead() {
     return new Promise((resolve, reject) => {
-        contractTOGet.methods.currentResult().call().then(function (end) {
+        contractTOGet.methods.CurrentResult().call().then(function (end) {
         return resolve(end);
       })
     })
