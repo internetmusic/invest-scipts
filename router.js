@@ -39,7 +39,7 @@ function getCurrentLead() {
     try
     {
       var CurrentLead = await getCurrentLead();
-      res.send(output);
+      res.send(CurrentLead);
     } catch(err) {
       console.log('err' + err.message);
       res.status(500).send({
